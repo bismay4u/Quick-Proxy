@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "http-proxy": "^1.18.1",
+    "http-proxy-to-socks": "^1.1.2",
     "simple-socks": "^2.2.1"
   }
 }
