@@ -2,6 +2,8 @@ const
   socks5 = require('simple-socks'),
   server = socks5.createServer().listen(5050);
 
+const http_proxy = require('http-proxy-to-socks');
+
 // When a reqest arrives for a remote destination
 server.on('proxyConnect', (info, destination) => {
   console.log('connected to remote server at %s:%d', info.address, info.port);
@@ -38,3 +40,11 @@ server.on('proxyEnd', (response, args) => {
   console.log('socket closed with code %d', response);
   console.log(args);
 });
+
+
+http_proxy.createServer({
+    host: '0.0.0.0',
+    socks: '127.0.0.1:5050',
+    proxyListReloadTimeout: 60,
+    port: 5051,
+  });
